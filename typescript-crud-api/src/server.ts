@@ -3,6 +3,10 @@ import cors from 'cors';
 import { errorHandler } from './_middleware/errorHandler';
 import { initialize } from './_helpers/db';
 import userscontroller from './users/users.controller';
+import departmentsController from './departments/departments.controller';
+import employeesController from './employees/employees.controller';
+import requestsController from './requests/requests.controller';
+import transferController from './transfer/transfer.controller';
 
 const app: Application = express();
 
@@ -21,6 +25,10 @@ app.get('/__ping', (_req, res) => res.json({ pong: true }));
 
 // mount user routes
 app.use('/users', userscontroller);
+app.use('/departments', departmentsController);
+app.use('/employees', employeesController);
+app.use('/requests', requestsController);
+app.use('/transfer', transferController);
 
 // global error handler (must come after route registration)
 app.use(errorHandler);
